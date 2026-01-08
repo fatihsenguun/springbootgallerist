@@ -1,4 +1,4 @@
-package com.fatihsengun.jwt;
+package com.fatihsengun.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

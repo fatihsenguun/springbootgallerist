@@ -9,7 +9,8 @@ public enum MessageType {
 	GENERAL_EXCEPTION("9999","A General Error Occured"),
 	INVALID_USERNAME_OR_PASSWORD("1002","Invalid Username or Password!"),
 	USER_NOT_FOUND("1003","User not Found!"),
-	TOKEN_EXPIRED("1004","Token Expired!");
+	TOKEN_EXPIRED("1004","Token Expired!"),
+	OBJECT_NOT_FOUND("1005","Object Not Found");
 	
 	private String code;
 	

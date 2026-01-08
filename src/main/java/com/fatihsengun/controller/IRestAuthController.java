@@ -1,10 +1,9 @@
 package com.fatihsengun.controller;
 
+import com.fatihsengun.dto.AuthRequest;
+import com.fatihsengun.dto.AuthResponse;
 import com.fatihsengun.dto.DtoUser;
-import com.fatihsengun.jwt.AuthRequest;
-import com.fatihsengun.jwt.AuthResponse;
-import com.fatihsengun.jwt.RefreshTokenRequest;
-import com.fatihsengun.model.RefreshToken;
+import com.fatihsengun.dto.RefreshTokenRequest;
 import com.fatihsengun.model.RootEntity;
 
 public interface IRestAuthController {

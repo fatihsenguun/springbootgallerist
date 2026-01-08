@@ -1,5 +1,6 @@
 package com.fatihsengun.config;
 
+import com.fatihsengun.jwt.AuthTokenEntryPoint;
 import com.fatihsengun.jwt.JwtAuthenticationFilter;
 import com.fatihsengun.starter.GalleristApplicationStarter;
 
@@ -25,6 +26,9 @@ public class SecurityConfig {
 	@Autowired
 	private AuthenticationProvider authenticationProvider;
 	
+	@Autowired
+	private AuthTokenEntryPoint authTokenEntryPoint;
+	
 
 	private static final String AUTHENTICATE = "/authenticate";
 	private static final String REGISTER = "/register";
@@ -42,6 +46,7 @@ public class SecurityConfig {
 		.permitAll()
 		.anyRequest()
 		.authenticated())
+		.exceptionHandling(exception->exception.authenticationEntryPoint(authTokenEntryPoint))
 		.sessionManagement(session ->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 		.authenticationProvider(authenticationProvider)
 		.addFilterAfter(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

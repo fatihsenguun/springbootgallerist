@@ -6,17 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fatihsengun.controller.IRestAuthController;
+import com.fatihsengun.controller.RestBaseController;
+import com.fatihsengun.dto.AuthRequest;
+import com.fatihsengun.dto.AuthResponse;
 import com.fatihsengun.dto.DtoUser;
-import com.fatihsengun.jwt.AuthRequest;
-import com.fatihsengun.jwt.AuthResponse;
-import com.fatihsengun.jwt.RefreshTokenRequest;
-import com.fatihsengun.model.RefreshToken;
+import com.fatihsengun.dto.RefreshTokenRequest;
 import com.fatihsengun.model.RootEntity;
 import com.fatihsengun.service.IAuthService;
 import com.fatihsengun.service.IRefreshTokenService;
 
+import jakarta.validation.Valid;
+
 @RestController
-public class RestAuthControllerImpl implements IRestAuthController {
+public class RestAuthControllerImpl extends RestBaseController implements IRestAuthController {
 
 	@Autowired
 	private IAuthService authService;
@@ -26,22 +28,22 @@ public class RestAuthControllerImpl implements IRestAuthController {
 
 	@Override
 	@PostMapping("/register")
-	public RootEntity<DtoUser> register(@RequestBody AuthRequest authRequest) {
-		return RootEntity.ok(authService.register(authRequest));
+	public RootEntity<DtoUser> register(@Valid @RequestBody AuthRequest authRequest) {
+		return ok(authService.register(authRequest));
 	}
 
 	@Override
 	@PostMapping("/authenticate")
-	public RootEntity<AuthResponse> authenticate(@RequestBody AuthRequest authRequest) {
+	public RootEntity<AuthResponse> authenticate (@Valid @RequestBody AuthRequest authRequest) {
 
-		return RootEntity.ok(authService.authenticate(authRequest));
+		return ok(authService.authenticate(authRequest));
 	}
 
 	@Override
 	@PostMapping("/refreshToken")
-	public RootEntity<AuthResponse> refreshToken(@RequestBody RefreshTokenRequest request) {
+	public RootEntity<AuthResponse> refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
 
-		return RootEntity.ok(refreshTokenService.refreshToken(request));
+		return ok(refreshTokenService.refreshToken(request));
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.fatihsengun.model;
 import java.util.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
@@ -30,10 +31,10 @@ public class Customer extends BaseEntity {
 	@Column(name = "birth_of_date")
 	private Date birthOfDate;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST,orphanRemoval = true)
 	private Address address;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST,orphanRemoval = true)
 	private Account account;
 	
 	

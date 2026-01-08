@@ -1,7 +1,6 @@
 package com.fatihsengun.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import com.fatihsengun.enums.CarStatusType;
 import com.fatihsengun.enums.CurrencyType;
@@ -34,7 +33,7 @@ public class Car extends BaseEntity {
 	private String model;
 	
 	@Column(name = "production_year")
-	private Date productionYear;
+	private Integer productionYear;
 	
 	@Column(name = "price")
 	private BigDecimal price;

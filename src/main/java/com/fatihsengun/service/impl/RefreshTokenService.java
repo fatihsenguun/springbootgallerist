@@ -7,12 +7,12 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fatihsengun.dto.AuthResponse;
+import com.fatihsengun.dto.RefreshTokenRequest;
 import com.fatihsengun.exception.BaseException;
 import com.fatihsengun.exception.ErrorMessage;
 import com.fatihsengun.exception.MessageType;
-import com.fatihsengun.jwt.AuthResponse;
 import com.fatihsengun.jwt.JwtService;
-import com.fatihsengun.jwt.RefreshTokenRequest;
 import com.fatihsengun.model.RefreshToken;
 import com.fatihsengun.model.User;
 import com.fatihsengun.repository.RefreshTokenRepository;

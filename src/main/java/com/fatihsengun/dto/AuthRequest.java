@@ -1,5 +1,6 @@
-package com.fatihsengun.jwt;
+package com.fatihsengun.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuthRequest {
 
+	@NotEmpty
 	private String username;
-	
+	@NotEmpty
 	private String password; 
 	
 }

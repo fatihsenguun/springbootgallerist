@@ -1,7 +1,6 @@
 package com.fatihsengun.model;
 
-import java.util.Date;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
@@ -20,13 +19,12 @@ import lombok.Setter;
 public class Gallerist extends BaseEntity {
 
 	@Column(name = "first_name")
-	private String fiirstName;
-	
+	private String firstName;
+
 	@Column(name = "last_name")
 	private String lastName;
-	
-	@OneToOne
+
+	@OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private Address address;
-	
-	
+
 }

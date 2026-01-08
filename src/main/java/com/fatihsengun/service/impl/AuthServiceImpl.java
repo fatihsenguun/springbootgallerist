@@ -11,12 +11,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.fatihsengun.dto.AuthRequest;
+import com.fatihsengun.dto.AuthResponse;
 import com.fatihsengun.dto.DtoUser;
 import com.fatihsengun.exception.BaseException;
 import com.fatihsengun.exception.ErrorMessage;
 import com.fatihsengun.exception.MessageType;
-import com.fatihsengun.jwt.AuthRequest;
-import com.fatihsengun.jwt.AuthResponse;
 import com.fatihsengun.jwt.JwtService;
 import com.fatihsengun.model.RefreshToken;
 import com.fatihsengun.model.User;

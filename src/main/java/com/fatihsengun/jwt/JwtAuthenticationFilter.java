@@ -3,12 +3,14 @@ package com.fatihsengun.jwt;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import com.fatihsengun.exception.BaseException;
 import com.fatihsengun.exception.ErrorMessage;
@@ -28,6 +30,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	@Qualifier("handlerExceptionResolver")
+	private HandlerExceptionResolver resolver;
+	
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -50,15 +57,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 							username, null, userDetails.getAuthorities());
+					
 					authentication.setDetails(userDetails);
 
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
 			}
 		} catch (ExpiredJwtException e) {
-			throw new ExpiredJwtException(null, null, token);
+			resolver.resolveException(request, response, null, e);
+
 		} catch (Exception e) {
-			throw new BaseException(new ErrorMessage(MessageType.GENERAL_EXCEPTION, e.getMessage()));
+			resolver.resolveException(request, response, null, e);
 		}
 		filterChain.doFilter(request, response);
 	}
