@@ -7,5 +7,6 @@ import com.fatihsengun.model.RootEntity;
 public interface IRestCarController {
 	
 	public RootEntity<DtoCar> saveCar(DtoCarIU dtoCarIU);
+	
 
 }
