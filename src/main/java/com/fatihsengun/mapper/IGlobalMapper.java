@@ -1,25 +1,8 @@
 package com.fatihsengun.mapper;
 
+import com.fatihsengun.dto.*;
+import com.fatihsengun.model.*;
 import org.mapstruct.Mapper;
-
-import com.fatihsengun.dto.DtoAccount;
-import com.fatihsengun.dto.DtoAccountIU;
-import com.fatihsengun.dto.DtoAddress;
-import com.fatihsengun.dto.DtoAddressIU;
-import com.fatihsengun.dto.DtoCar;
-import com.fatihsengun.dto.DtoCarIU;
-import com.fatihsengun.dto.DtoCustomer;
-import com.fatihsengun.dto.DtoCustomerIU;
-import com.fatihsengun.dto.DtoGallerist;
-import com.fatihsengun.dto.DtoGalleristCar;
-import com.fatihsengun.dto.DtoGalleristCarIU;
-import com.fatihsengun.dto.DtoGalleristIU;
-import com.fatihsengun.model.Account;
-import com.fatihsengun.model.Address;
-import com.fatihsengun.model.Car;
-import com.fatihsengun.model.Customer;
-import com.fatihsengun.model.Gallerist;
-import com.fatihsengun.model.GalleristCar;
 
 @Mapper(componentModel = "spring")
 public interface IGlobalMapper {
@@ -47,5 +30,7 @@ public interface IGlobalMapper {
 	GalleristCar toGalleristCarEntity(DtoGalleristCarIU dtoGalleristCarIU);
 
 	DtoGalleristCar tDtoGalleristCarDto(GalleristCar galleristCar);
+
+	DtoSaledCar toDtoSaledCar(SaledCar saledCar);
 
 }

@@ -1,11 +1,10 @@
 package com.fatihsengun.dto;
 
-import java.math.BigDecimal;
-
 import com.fatihsengun.model.BaseEntity;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -26,5 +25,7 @@ public class DtoCar extends BaseEntity {
 	private BigDecimal damagePrice;
 
 	private String carStatusType;
+
+	private boolean isCarSaled;
 
 }
