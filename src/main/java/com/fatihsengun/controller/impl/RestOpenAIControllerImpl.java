@@ -1,11 +1,7 @@
 package com.fatihsengun.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fatihsengun.controller.IRestOpenAIController;
 import com.fatihsengun.controller.RestBaseController;
@@ -31,6 +27,12 @@ public class RestOpenAIControllerImpl extends RestBaseController implements IRes
 	public RootEntity<String> generateCarDescriptionWithId(@PathVariable(name = "id") Long id) {
 
 		return ok(openAiService.generateCarDescriptionWithId(id));
+	}
+
+	@PostMapping("/chat")
+	public RootEntity<String> aiSalesConsultant(@RequestBody String query){
+
+		return ok(openAiService.aiSalesConsultant(query));
 	}
 
 }

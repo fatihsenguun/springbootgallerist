@@ -6,6 +6,7 @@ import com.fatihsengun.exception.ErrorMessage;
 import com.fatihsengun.exception.MessageType;
 import com.fatihsengun.service.IGalleristCarService;
 import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.pgvector.PgVectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,19 @@ public class VectorService {
 
 
 
+    }
+
+    public List<String> vectorSearch(String userQuery){
+
+        List<Document> results = vectorStore.similaritySearch(SearchRequest.builder().query(userQuery).build());
+List<String> response = new ArrayList<>();
+        for (Document doc : results){
+
+            String arabaBilgisi = doc.getFormattedContent().toString();
+
+            response.add(arabaBilgisi);
+        }
+
+        return response;
     }
 }

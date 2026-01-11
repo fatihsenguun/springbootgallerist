@@ -1,19 +1,14 @@
 package com.fatihsengun.model;
 
-import java.math.BigDecimal;
-
 import com.fatihsengun.enums.CarStatusType;
 import com.fatihsengun.enums.CurrencyType;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "car")
@@ -34,6 +29,9 @@ public class Car extends BaseEntity {
 	
 	@Column(name = "production_year")
 	private Integer productionYear;
+
+	@Column(name = "color")
+	private String color;
 	
 	@Column(name = "price")
 	private BigDecimal price;

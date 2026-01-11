@@ -16,9 +16,12 @@ public class DtoCar extends BaseEntity {
 
 	private String model;
 
+	private String color;
+
 	private Integer productionYear;
 
 	private BigDecimal price;
+
 
 	private String currencyType;
 
