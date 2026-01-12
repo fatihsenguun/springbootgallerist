@@ -30,12 +30,16 @@ public class Car extends BaseEntity {
 	@Column(name = "production_year")
 	private Integer productionYear;
 
+	@Column(name = "km")
+	private Integer km;
+
 	@Column(name = "color")
 	private String color;
 	
 	@Column(name = "price")
 	private BigDecimal price;
-	
+
+
 	@Column(name = "currency_type")
 	@Enumerated(EnumType.STRING)
 	private CurrencyType currencyType;

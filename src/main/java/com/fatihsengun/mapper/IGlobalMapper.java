@@ -33,4 +33,6 @@ public interface IGlobalMapper {
 
 	DtoSaledCar toDtoSaledCar(SaledCar saledCar);
 
+	DtoUser toDtoUser(User user);
+
 }

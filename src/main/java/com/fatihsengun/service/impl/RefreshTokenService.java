@@ -1,13 +1,6 @@
 package com.fatihsengun.service.impl;
 
-import java.util.Date;
-import java.util.Optional;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.fatihsengun.dto.AuthResponse;
+import com.fatihsengun.dto.RefreshResponse;
 import com.fatihsengun.dto.RefreshTokenRequest;
 import com.fatihsengun.exception.BaseException;
 import com.fatihsengun.exception.ErrorMessage;
@@ -17,6 +10,12 @@ import com.fatihsengun.model.RefreshToken;
 import com.fatihsengun.model.User;
 import com.fatihsengun.repository.RefreshTokenRepository;
 import com.fatihsengun.service.IRefreshTokenService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class RefreshTokenService implements IRefreshTokenService {
@@ -44,7 +43,7 @@ public class RefreshTokenService implements IRefreshTokenService {
 	}
 
 	@Override
-	public AuthResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
+	public RefreshResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
 
 		Optional<RefreshToken> optional = refreshTokenRepository
 				.findByRefreshToken(refreshTokenRequest.getRefreshToken());
@@ -63,7 +62,7 @@ public class RefreshTokenService implements IRefreshTokenService {
 		RefreshToken savedRefreshToken = saveRefreshToken(refreshToken.getUser());
 		refreshTokenRepository.delete(refreshToken);
 
-		return new AuthResponse(accessToken, savedRefreshToken.getRefreshToken());
+		return new RefreshResponse(accessToken, savedRefreshToken.getRefreshToken());
 	}
 
 }

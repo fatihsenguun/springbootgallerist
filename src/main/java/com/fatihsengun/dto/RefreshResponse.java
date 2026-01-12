@@ -9,12 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthResponse {
-	public String accessToken;
-	
-	public String refreshToken;
+public class RefreshResponse {
+    public String accessToken;
 
-	public String galleristId;
-	
+    public String refreshToken;
 
 }

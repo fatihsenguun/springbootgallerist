@@ -22,6 +22,7 @@ public class DtoCar extends BaseEntity {
 
 	private BigDecimal price;
 
+	private Integer km;
 
 	private String currencyType;
 

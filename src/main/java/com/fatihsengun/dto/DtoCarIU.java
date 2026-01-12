@@ -22,6 +22,8 @@ public class DtoCarIU {
 	private String color;
 
 	private Integer productionYear;
+@NotEmpty
+	private Integer km;
 
 	private BigDecimal price;
 	@NotEmpty

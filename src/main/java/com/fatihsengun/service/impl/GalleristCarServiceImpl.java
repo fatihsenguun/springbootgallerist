@@ -1,12 +1,5 @@
 package com.fatihsengun.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.fatihsengun.dto.DtoCar;
 import com.fatihsengun.dto.DtoGalleristCar;
 import com.fatihsengun.dto.DtoGalleristCarIU;
@@ -21,6 +14,12 @@ import com.fatihsengun.repository.CarRepository;
 import com.fatihsengun.repository.GalleristCarRepository;
 import com.fatihsengun.repository.GalleristRepository;
 import com.fatihsengun.service.IGalleristCarService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class GalleristCarServiceImpl implements IGalleristCarService {
@@ -36,6 +35,9 @@ public class GalleristCarServiceImpl implements IGalleristCarService {
 
 	@Autowired
 	private IGlobalMapper globalMapper;
+
+	@Autowired
+	private IdentityService identityService;
 
 	@Override
 	public DtoGalleristCar saveGalleristCar(DtoGalleristCarIU dtoGalleristCarIU) {
@@ -55,9 +57,9 @@ public class GalleristCarServiceImpl implements IGalleristCarService {
 	}
 
 	@Override
-	public List<DtoCar> findDtoGalleristCars(Long id) {
+	public List<DtoCar> findDtoGalleristCars() {
 		List<DtoCar> response = new ArrayList<>();
-		List<GalleristCar> cars = galleristCarRepository.findByGalleristId(id);
+		List<GalleristCar> cars = galleristCarRepository.findByGalleristId(identityService.getCurrentGallerist().getId());
 
 		if (cars != null) {
 			for (GalleristCar car : cars) {
@@ -66,8 +68,8 @@ public class GalleristCarServiceImpl implements IGalleristCarService {
 			return response;
 
 		}
+		throw new BaseException(new ErrorMessage(MessageType.NO_RECORD_EXIST,"galleristId :"+ identityService.getCurrentGallerist().getId().toString()));
 
-		return null;
 	}
 
 }

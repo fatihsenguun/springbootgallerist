@@ -21,9 +21,12 @@ public class VectorService {
     @Autowired
     private PgVectorStore vectorStore;
 
+    @Autowired
+    private IdentityService identityService;
+
 
     public Integer toVector(Long id) {
-        List<DtoCar> carList = galleristCarService.findDtoGalleristCars(id);
+        List<DtoCar> carList = galleristCarService.findDtoGalleristCars();
 
         if (carList != null) {
             List<Document> documents = new ArrayList<>();

@@ -80,7 +80,7 @@ String prompt =
 				Elimizdeki stok durumu (sadece bunları öner) : {context}
 				
 				Lütfen bu araçları kullanarak müşteriye cevap ver. araçların özelliklerini
-				öv ve müşteriyi showrooma dave et. Cevabın ingilizce olsun.
+				öv ve müşteriyi showrooma davet et. Cevabın ingilizce olsun.
 				
 				 CRITICAL: Output ONLY the advertisement text. Do not write intro sentences like "Here is the description". Start directly with a catchy headline.
 	
