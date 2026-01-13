@@ -72,4 +72,22 @@ public class GalleristCarServiceImpl implements IGalleristCarService {
 
 	}
 
+
+
+	public DtoCar findGalleristCarById(Long id){
+		DtoCar dtoCar = new DtoCar();
+
+		GalleristCar galleristCar =galleristCarRepository.findByCarId(id);
+
+			if (galleristCar.getGallerist().getId()!=identityService.getCurrentGallerist().getId()){
+				throw new BaseException(new ErrorMessage(MessageType.NO_RECORD_EXIST,"carId: "+id));
+			}
+
+		return 	globalMapper.toCarDto(galleristCar.getCar());
+
+	}
 }
+
+
+
+

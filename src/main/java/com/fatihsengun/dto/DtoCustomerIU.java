@@ -1,7 +1,5 @@
 package com.fatihsengun.dto;
 
-import java.util.Date;
-
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,11 +17,9 @@ public class DtoCustomerIU {
 	private String tckn;
 	
 	@NotNull
-	private Date birthOfDate;
+	private String birthOfDate;
 	
 	@NotNull
 	private DtoAddressIU address;
 	
-	@NotNull
-	private DtoAccountIU account;
 }

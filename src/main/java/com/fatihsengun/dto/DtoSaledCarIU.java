@@ -14,6 +14,6 @@ public class DtoSaledCarIU  {
     private  Long car;
     @NotEmpty
 
-    private Long customer;
+    private DtoCustomerIU customer;
 
 }

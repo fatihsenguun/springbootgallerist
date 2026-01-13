@@ -9,5 +9,6 @@ import java.util.List;
 public interface IGalleristCarService {
 	public DtoGalleristCar saveGalleristCar(DtoGalleristCarIU dtoGalleristCarIU);
 	public List<DtoCar>  findDtoGalleristCars();
+	public DtoCar findGalleristCarById(Long id);
 
 }

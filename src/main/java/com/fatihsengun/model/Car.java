@@ -1,6 +1,5 @@
 package com.fatihsengun.model;
 
-import com.fatihsengun.enums.CarStatusType;
 import com.fatihsengun.enums.CurrencyType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -47,9 +46,7 @@ public class Car extends BaseEntity {
 	@Column(name = "damage_price")
 	private BigDecimal damagePrice;
 	
-	@Column(name = "car_status_type")
-	@Enumerated(EnumType.STRING)
-	private CarStatusType carStatusType;
+
 
 	@Column(name = "is_car_saled")
 	private boolean  isCarSaled;

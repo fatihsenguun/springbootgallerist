@@ -10,6 +10,7 @@ import java.util.List;
 public interface IRestGalleristCarController {
 	public RootEntity<DtoGalleristCar> saveGalleristCar(DtoGalleristCarIU dtoGalleristCarIU);
 
-	public List<DtoCar>  findByGalleristId();
+	public RootEntity<List<DtoCar> > findByGalleristId();
+	public RootEntity<DtoCar> findByCarId(Long id);
 
 }

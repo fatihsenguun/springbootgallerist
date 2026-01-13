@@ -17,21 +17,30 @@ import java.util.List;
 @RequestMapping("/rest/api/galleristcar")
 public class RestGalleristCarControllerImpl extends RestBaseController implements IRestGalleristCarController {
 
-	@Autowired
-	private IGalleristCarService galleristCarService;
+    @Autowired
+    private IGalleristCarService galleristCarService;
 
-	@Override
-	@PostMapping("/save")
-	public RootEntity<DtoGalleristCar> saveGalleristCar(@Valid @RequestBody DtoGalleristCarIU dtoGalleristCarIU) {
+    @Override
+    @PostMapping("/save")
+    public RootEntity<DtoGalleristCar> saveGalleristCar(@Valid @RequestBody DtoGalleristCarIU dtoGalleristCarIU) {
 
-		return ok(galleristCarService.saveGalleristCar(dtoGalleristCarIU));
-	}
+        return ok(galleristCarService.saveGalleristCar(dtoGalleristCarIU));
+    }
 
-	@Override
-	@GetMapping("/cars")
-	public List<DtoCar> findByGalleristId() {
+    @Override
+    @GetMapping("/cars")
+    public RootEntity<List<DtoCar>> findByGalleristId() {
 
-		return galleristCarService.findDtoGalleristCars();
-	}
+        return ok(galleristCarService.findDtoGalleristCars());
+    }
+
+    @Override
+    @GetMapping("/cars/{id}")
+    public RootEntity<DtoCar> findByCarId(@PathVariable(name = "id") Long id) {
+
+
+        return ok(galleristCarService.findGalleristCarById(id));
+    }
+
 
 }

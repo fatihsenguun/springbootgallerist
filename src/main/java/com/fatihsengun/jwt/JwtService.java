@@ -1,17 +1,15 @@
 package com.fatihsengun.jwt;
 
-import java.util.Date;
-import java.util.function.Function;
-
-import javax.crypto.SecretKey;
-
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import javax.crypto.SecretKey;
+import java.util.Date;
+import java.util.function.Function;
 
 @Component
 public class JwtService {
@@ -20,7 +18,7 @@ public class JwtService {
 	public String generateToken(UserDetails userDetails) {
 
 		return Jwts.builder().subject(userDetails.getUsername()).issuedAt(new Date())
-				.expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2)).signWith(getKey()).compact();
+				.expiration(new Date(System.currentTimeMillis() + 1000 * 60* 60 * 2 )).signWith(getKey()).compact();
 
 	}
 

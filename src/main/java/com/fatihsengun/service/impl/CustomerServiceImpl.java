@@ -1,11 +1,5 @@
 package com.fatihsengun.service.impl;
 
-import java.util.Date;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.fatihsengun.dto.DtoCustomer;
 import com.fatihsengun.dto.DtoCustomerIU;
 import com.fatihsengun.exception.BaseException;
@@ -15,6 +9,11 @@ import com.fatihsengun.mapper.IGlobalMapper;
 import com.fatihsengun.model.Customer;
 import com.fatihsengun.repository.CustomerRepository;
 import com.fatihsengun.service.ICustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
@@ -32,7 +31,6 @@ public class CustomerServiceImpl implements ICustomerService {
 		Date currentTime = new Date();
 		customer.setCreateTime(currentTime);
 		customer.getAddress().setCreateTime(currentTime);
-		customer.getAccount().setCreateTime(currentTime);
 		return globalMapper.toCustomerDto((customerRepository.save(customer)));
 	}
 

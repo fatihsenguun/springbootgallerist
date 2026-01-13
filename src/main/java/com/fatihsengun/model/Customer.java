@@ -1,11 +1,6 @@
 package com.fatihsengun.model;
-import java.util.Date;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,13 +24,11 @@ public class Customer extends BaseEntity {
 	private String tckn;
 	
 	@Column(name = "birth_of_date")
-	private Date birthOfDate;
+	private String birthOfDate;
 	
 	@OneToOne(cascade = CascadeType.PERSIST,orphanRemoval = true)
 	private Address address;
 	
-	@OneToOne(cascade = CascadeType.PERSIST,orphanRemoval = true)
-	private Account account;
-	
+
 	
 }

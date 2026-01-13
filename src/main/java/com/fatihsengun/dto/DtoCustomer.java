@@ -1,7 +1,5 @@
 package com.fatihsengun.dto;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,10 +14,9 @@ public class DtoCustomer  extends DtoBase{
 
 	private String tckn;
 
-	private Date birthOfDate;
+	private String birthOfDate;
 
 	private DtoAddress address;
 
-	private DtoAccount account;
 
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class SaledCarServiceImpl implements ISaledCarService {
@@ -40,29 +41,36 @@ public class SaledCarServiceImpl implements ISaledCarService {
     public DtoSaledCar saleCar(DtoSaledCarIU dtoSaledCarIU) {
         Car car = carRepository.findById(dtoSaledCarIU.getCar())
                 .orElseThrow(() -> new BaseException(
-                        new ErrorMessage(MessageType.NO_RECORD_EXIST,"CarId : "+ dtoSaledCarIU.getCar().toString())));
+                        new ErrorMessage(MessageType.NO_RECORD_EXIST, "CarId : " + dtoSaledCarIU.getCar().toString())));
         Gallerist gallerist = galleristRepository.findById(dtoSaledCarIU.getGallerist())
                 .orElseThrow(() -> new BaseException(
-                        new ErrorMessage(MessageType.NO_RECORD_EXIST, "Gallerist Id : "+ dtoSaledCarIU.getGallerist().toString())));
+                        new ErrorMessage(MessageType.NO_RECORD_EXIST, "Gallerist Id : " + dtoSaledCarIU.getGallerist().toString())));
 
-        Customer customer = customerRepository.findById(dtoSaledCarIU.getCustomer())
-                .orElseThrow(() -> new BaseException(
-                        new ErrorMessage(MessageType.NO_RECORD_EXIST,"CustomerId : "+ dtoSaledCarIU.getCustomer().toString())));
-car.setCarSaled(true);
-carRepository.save(car);
-if (galleristCarRepository.findByCarId(car.getId())==null){
-    GalleristCar galleristCar = new GalleristCar();
-    galleristCar.setCar(car);
-    galleristCar.setGallerist(gallerist);
-    galleristCarRepository.save(galleristCar);
-}
+        Customer customer = new Customer();
+        Optional<Customer> optionalCustomer = customerRepository.findByTckn(dtoSaledCarIU.getCustomer().getTckn());
+
+        if (optionalCustomer.isPresent()) {
+            customer = optionalCustomer.get();
+        }else{
+            customer=customerRepository.save(globalMapper.toCustomerEntity(dtoSaledCarIU.getCustomer()));
+        }
+
+
+        car.setCarSaled(true);
+        carRepository.save(car);
+        if (galleristCarRepository.findByCarId(car.getId()) == null) {
+            GalleristCar galleristCar = new GalleristCar();
+            galleristCar.setCar(car);
+            galleristCar.setGallerist(gallerist);
+            galleristCarRepository.save(galleristCar);
+        }
 
         SaledCar saledCar = new SaledCar();
         saledCar.setCar(car);
         saledCar.setCustomer(customer);
         saledCar.setGallerist(gallerist);
-saledCar.setCreateTime(new Date());
-    DtoSaledCar response = globalMapper.toDtoSaledCar(saledCarRepository.save(saledCar));
+        saledCar.setCreateTime(new Date());
+        DtoSaledCar response = globalMapper.toDtoSaledCar(saledCarRepository.save(saledCar));
         return response;
     }
 }
