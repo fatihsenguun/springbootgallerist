@@ -17,6 +17,7 @@ import com.fatihsengun.repository.AuthRepository;
 import com.fatihsengun.repository.GalleristRepository;
 import com.fatihsengun.repository.RefreshTokenRepository;
 import com.fatihsengun.service.IAuthService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -54,9 +55,10 @@ public class AuthServiceImpl implements IAuthService {
 	@Autowired
 	private IGlobalMapper globalMapper;
 
+	@Transactional
 	public DtoUser register(RegisterRequest authRequest) {
 		if (authRepository.existsByUsername(authRequest.getUsername())) {
-			throw new BaseException(new ErrorMessage(MessageType.USER_NOT_FOUND, authRequest.getUsername()));
+			throw new BaseException(new ErrorMessage(MessageType.GENERAL_EXCEPTION, authRequest.getUsername()));
 		}
 		User user = new User();
 
@@ -65,16 +67,8 @@ public class AuthServiceImpl implements IAuthService {
 		user.setRole(authRequest.getRole());
 		user.setCreateTime(new Date());
 if (authRequest.getRole()== RoleType.ADMIN){
-	Gallerist gallerist = new Gallerist();
-	galleristRepository.save(gallerist);
+	Gallerist gallerist = galleristRepository.save(globalMapper.toGalleristEntity(authRequest.getGallerist()));
 	user.setGallerist(gallerist);
-} else if (authRequest.getRole()==RoleType.EMPLOYEE) {
-	if (authRequest.getGalleristId()==null){
-		throw new BaseException(new ErrorMessage(MessageType.NO_RECORD_EXIST,"galleristId"));
-	}
-	Gallerist findedGallerist = galleristRepository.findById(authRequest.getGalleristId())
-			.orElseThrow(()-> new BaseException(new ErrorMessage(MessageType.OBJECT_NOT_FOUND,"gallerist")));
-	user.setGallerist(findedGallerist);
 }
 authRepository.save(user);
 		return globalMapper.toDtoUser(user);

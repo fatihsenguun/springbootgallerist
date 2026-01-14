@@ -19,6 +19,6 @@ public class RegisterRequest {
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
-    @NotEmpty
-    private Long galleristId;
+
+    private DtoGalleristIU gallerist;
 }
