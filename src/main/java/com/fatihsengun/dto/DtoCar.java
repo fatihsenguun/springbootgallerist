@@ -28,7 +28,6 @@ public class DtoCar extends BaseEntity {
 
 	private BigDecimal damagePrice;
 
-
 	private boolean isCarSaled;
 
 }

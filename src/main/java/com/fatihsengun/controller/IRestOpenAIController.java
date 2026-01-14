@@ -5,7 +5,7 @@ import com.fatihsengun.model.RootEntity;
 public interface IRestOpenAIController {
 	
 	RootEntity<String> getAnswer(String question);
-	RootEntity<String> generateCarDescriptionWithId(Long id);
+	RootEntity<String> generateCarDescriptionWithPlate(String plate);
 
 
 }

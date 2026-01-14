@@ -23,10 +23,10 @@ public class RestOpenAIControllerImpl extends RestBaseController implements IRes
 	}
 
 	@Override
-	@GetMapping("/description/car/{id}")
-	public RootEntity<String> generateCarDescriptionWithId(@PathVariable(name = "id") Long id) {
+	@GetMapping("/description/car/{plate}")
+	public RootEntity<String> generateCarDescriptionWithPlate(@PathVariable(name = "plate") String plate) {
 
-		return ok(openAiService.generateCarDescriptionWithId(id));
+		return ok(openAiService.generateCarDescriptionWithPlate(plate));
 	}
 
 	@PostMapping("/chat")

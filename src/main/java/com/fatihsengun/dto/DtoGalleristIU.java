@@ -10,10 +10,7 @@ import lombok.Setter;
 public class DtoGalleristIU {
 
 	@NotEmpty
-	private String firstName;
-
-	@NotEmpty
-	private String lastName;
+	private String galleristName;
 
 	@NotEmpty
 	private DtoAddressIU address;

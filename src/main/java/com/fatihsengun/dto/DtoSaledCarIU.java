@@ -8,11 +8,9 @@ import lombok.Setter;
 @Setter
 public class DtoSaledCarIU  {
 
-    @NotEmpty
-    private Long gallerist;
+
     @NotEmpty
     private  Long car;
-    @NotEmpty
 
     private DtoCustomerIU customer;
 

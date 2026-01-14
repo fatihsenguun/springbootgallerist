@@ -36,23 +36,24 @@ public class SaledCarServiceImpl implements ISaledCarService {
     @Autowired
     private IGlobalMapper globalMapper;
 
+    @Autowired
+    private IdentityService identityService;
+
 
     @Override
     public DtoSaledCar saleCar(DtoSaledCarIU dtoSaledCarIU) {
         Car car = carRepository.findById(dtoSaledCarIU.getCar())
                 .orElseThrow(() -> new BaseException(
                         new ErrorMessage(MessageType.NO_RECORD_EXIST, "CarId : " + dtoSaledCarIU.getCar().toString())));
-        Gallerist gallerist = galleristRepository.findById(dtoSaledCarIU.getGallerist())
-                .orElseThrow(() -> new BaseException(
-                        new ErrorMessage(MessageType.NO_RECORD_EXIST, "Gallerist Id : " + dtoSaledCarIU.getGallerist().toString())));
-
+        Gallerist gallerist = identityService.getCurrentGallerist();
         Customer customer = new Customer();
         Optional<Customer> optionalCustomer = customerRepository.findByTckn(dtoSaledCarIU.getCustomer().getTckn());
 
         if (optionalCustomer.isPresent()) {
             customer = optionalCustomer.get();
-        }else{
-            customer=customerRepository.save(globalMapper.toCustomerEntity(dtoSaledCarIU.getCustomer()));
+        } else {
+            customer = customerRepository.save(globalMapper.toCustomerEntity(dtoSaledCarIU.getCustomer()));
+            customer.setCreateTime(new Date());
         }
 
 

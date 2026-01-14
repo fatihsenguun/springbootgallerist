@@ -18,13 +18,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Gallerist extends BaseEntity {
 
-	@Column(name = "first_name")
-	private String firstName;
+    @Column(name = "gallerist_name")
+    private String galleristName;
 
-	@Column(name = "last_name")
-	private String lastName;
 
-	@OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
-	private Address address;
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private Address address;
 
 }
