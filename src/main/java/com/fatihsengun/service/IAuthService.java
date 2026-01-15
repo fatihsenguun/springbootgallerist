@@ -1,13 +1,11 @@
 package com.fatihsengun.service;
 
-import com.fatihsengun.dto.AuthRequest;
-import com.fatihsengun.dto.AuthResponse;
-import com.fatihsengun.dto.DtoUser;
-import com.fatihsengun.dto.RegisterRequest;
+import com.fatihsengun.dto.*;
 
 public interface IAuthService {
 	public DtoUser register(RegisterRequest authRequest);
 	public AuthResponse authenticate(AuthRequest authRequest);
+	public DtoUser registerEmp(RegisterRequestEmp authRequest);
 	
 
 }

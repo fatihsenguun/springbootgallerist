@@ -21,28 +21,30 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends BaseEntity implements UserDetails {
-	
-	@Column(name = "username")
-	private String username;
-	
-	@Column(name = "password")
-	private String password;
 
-	@Column(name="role")
-	@Enumerated(EnumType.STRING)
-	private RoleType role;
+    @Column(name = "username")
+    private String username;
 
-	@JoinColumn(name = "gallerist")
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Gallerist gallerist;
+    @Column(name = "password")
+    private String password;
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private RoleType role;
 
-		return List.of(new SimpleGrantedAuthority(role.name()));
-	}
+    @JoinColumn(name = "gallerist")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Gallerist gallerist;
 
-	
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (role == null) {
+            return List.of();
+        }
+
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
 
 }

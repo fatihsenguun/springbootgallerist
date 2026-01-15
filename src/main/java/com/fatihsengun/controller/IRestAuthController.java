@@ -8,6 +8,6 @@ public interface IRestAuthController {
 	public RootEntity<DtoUser> register(RegisterRequest authRequest);
 	public RootEntity<AuthResponse> authenticate (AuthRequest authRequest);
 	public RootEntity<RefreshResponse> refreshToken(RefreshTokenRequest request);
-	
+	public RootEntity<DtoUser> registerEmp(RegisterRequestEmp authRequest);
 	
 }

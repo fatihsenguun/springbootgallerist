@@ -43,4 +43,10 @@ public class RestAuthControllerImpl extends RestBaseController implements IRestA
 		return ok(refreshTokenService.refreshToken(request));
 	}
 
+	@Override
+	@PostMapping("/register/emp")
+	public RootEntity<DtoUser> registerEmp(@RequestBody RegisterRequestEmp authRequest) {
+		return ok( authService.registerEmp(authRequest));
+	}
+
 }

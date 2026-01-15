@@ -1,5 +1,6 @@
 package com.fatihsengun.dto;
 
+import com.fatihsengun.enums.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,8 @@ public class AuthResponse {
 	public String refreshToken;
 
 	public String galleristId;
+
+	public RoleType role;
 	
 
 }
